@@ -6,7 +6,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public --no-clear",
-    "deploy": "npm run build && bash sed.sh && npx gh-pages -d public"
+    "deploy": "npm run build && bash scripts/sed.sh && npx gh-pages -d public"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
