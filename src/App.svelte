@@ -1,5 +1,6 @@
 <script>
 	import Day from './components/Day.svelte'
+	import Palette from './components/Palette.svelte'
 
 	import Settings from './icons/Settings.svelte'
 
@@ -15,7 +16,14 @@
 		{/each}
 	</div>
 	<div class="footer-container">
-		<Settings />
+		<div>
+
+			<Settings />
+		</div>
+		<div>
+
+			<Palette />
+		</div>
 	</div>
 </main>
 
@@ -41,11 +49,16 @@
 	.footer-container {
 		background-color: white;
 		border: 1px solid #ff3e00;
-		/* width: 100vw; */
 		margin: .5em;
 		padding: .5em;
 		position: fixed;
 		bottom: 0;
+		display: flex;
+		flex-direction: row;
+	}
+
+	.footer-container > * {
+		margin: 0 .5em;
 	}
 
 	@media (min-width: 768px) {
