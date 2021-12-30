@@ -1,0 +1,1 @@
+sed -i '' -e 's/\/favicon/favicon/; s/\/global/global/; s/\/build/build/' ./public/index.html
