@@ -1,9 +1,9 @@
 <script>
 	import Day from './components/Day.svelte'
 
-	let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+	import Settings from './icons/Settings.svelte'
 
-	let widthScale = 24;
+	let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 </script>
 
 <main>
@@ -13,6 +13,9 @@
 			<Day {day} />
 		</div>
 		{/each}
+	</div>
+	<div class="footer-container">
+		<Settings />
 	</div>
 </main>
 
@@ -31,6 +34,18 @@
 	.days-container {
 		display: flex;
 		flex-direction: row;
+		height: calc(100vh - 48px - 2em);
+		overflow-y: scroll;
+	}
+
+	.footer-container {
+		background-color: white;
+		border: 1px solid #ff3e00;
+		/* width: 100vw; */
+		margin: .5em;
+		padding: .5em;
+		position: fixed;
+		bottom: 0;
 	}
 
 	@media (min-width: 768px) {
