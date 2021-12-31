@@ -1,5 +1,5 @@
 <script>
-    import { colorTitles, timeDelta, selectedColor } from "../stores"
+    import { colorTitles, timeDelta, scheduleData, selectedColor } from "../stores"
 
     export let time;
     export let day;
@@ -12,8 +12,8 @@
         if (aboveNode) {
             if (slotNode.style.backgroundColor == 'white') {
                 if (aboveNode.style.backgroundColor != 'white') {
-                    aboveNode.style.borderBottomLeftRadius = ".5em";
-                    aboveNode.style.borderBottomRightRadius = ".5em";
+                    aboveNode.style.borderBottomLeftRadius = ".2em";
+                    aboveNode.style.borderBottomRightRadius = ".2em";
                 }
                 // potentially more if the aboveNode is white?
             } else /* if slotNode is not white */ {
@@ -26,16 +26,16 @@
                     document.getElementById(`title-${day}-${time}`).innerText = "";
                     document.getElementById(`title-${day}-${time}`).style.color = "black";
                 } else {
-                    slotNode.style.borderTopLeftRadius = ".5em";
-                    slotNode.style.borderTopRightRadius = ".5em";
+                    slotNode.style.borderTopLeftRadius = ".2em";
+                    slotNode.style.borderTopRightRadius = ".2em";
 
                     document.getElementById(`title-${day}-${time}`).innerText = $colorTitles[$selectedColor];
                     document.getElementById(`title-${day}-${time}`).style.color = $selectedColor;
                 }
             }
         } else if (slotNode.style.backgroundColor != 'white') {
-            slotNode.style.borderTopLeftRadius = ".5em";
-            slotNode.style.borderTopRightRadius = ".5em";
+            slotNode.style.borderTopLeftRadius = ".2em";
+            slotNode.style.borderTopRightRadius = ".2em";
 
             document.getElementById(`title-${day}-${time}`).innerText = $colorTitles[$selectedColor];
             document.getElementById(`title-${day}-${time}`).style.color = $selectedColor;
@@ -47,8 +47,8 @@
         if (belowNode) {
             if (slotNode.style.backgroundColor == 'white') {
                 if (belowNode.style.backgroundColor != 'white') {
-                    belowNode.style.borderTopLeftRadius = ".5em";
-                    belowNode.style.borderTopRightRadius = ".5em";
+                    belowNode.style.borderTopLeftRadius = ".2em";
+                    belowNode.style.borderTopRightRadius = ".2em";
 
                     document.getElementById(`title-${belowNode.id}`).innerText = $colorTitles[belowNode.style.backgroundColor];
                     document.getElementById(`title-${belowNode.id}`).style.color = belowNode.style.backgroundColor;
@@ -63,13 +63,13 @@
                     document.getElementById(`title-${belowNode.id}`).innerText = "";
                     document.getElementById(`title-${belowNode.id}`).style.color = "black";
                 } else {
-                    slotNode.style.borderBottomLeftRadius = ".5em";
-                    slotNode.style.borderBottomRightRadius = ".5em";
+                    slotNode.style.borderBottomLeftRadius = ".2em";
+                    slotNode.style.borderBottomRightRadius = ".2em";
                 }
             }
         } else {
-            slotNode.style.borderBottomLeftRadius = ".5em";
-            slotNode.style.borderBottomRightRadius = ".5em";
+            slotNode.style.borderBottomLeftRadius = ".2em";
+            slotNode.style.borderBottomRightRadius = ".2em";
         }
     }
 
@@ -77,11 +77,16 @@
         let slotNode = document.getElementById(`${day}-${time}`);
         if (slotNode.style.backgroundColor != 'white') {
             slotNode.style.backgroundColor = 'white';
-            // document.querySelectorAll("[data-foo='1']")
+
+            $scheduleData.times[`${day}-${time}`] = "";
+
             document.getElementById(`title-${day}-${time}`).innerText = "";
             document.getElementById(`title-${day}-${time}`).setAttribute("data-color", "");
         } else {
             slotNode.style.backgroundColor = $selectedColor;
+
+            $scheduleData.times[`${day}-${time}`] = $selectedColor;
+
             document.getElementById(`title-${day}-${time}`).setAttribute("data-color", $selectedColor);
         }
 
@@ -119,6 +124,9 @@
         font-size: 1.5em;
         text-align: center;
         margin: .25em;
+        overflow: scroll;
+        width: 5em;
+        height: 6em;
     }
 
     .main {
@@ -126,6 +134,12 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        font-weight: 100;
+    }
+
+    .main:hover {
+        /* border: 1px solid black; */
+        /* border-radius: .2em; */
     }
 
     .slot {

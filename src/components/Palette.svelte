@@ -47,7 +47,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: .5em;
+        border-radius: .2em;
     }
 
     .palette-container {

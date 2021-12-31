@@ -44,13 +44,11 @@
 <style>
 	h1 {
         text-align: center;
-        color: #ff3e00;
         background-color: white;
         text-transform: uppercase;
         font-size: 1.25em;
         font-weight: 100;
         padding: 1em;
-        border: 1px solid #ff3e00;
         position: sticky;
         top: .5em;
     }

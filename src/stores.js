@@ -15,4 +15,8 @@ export const colorTitles = writable({
         "palegreen": "", 
         "lightseagreen": "", 
         "cyan": ""
-})
+});
+
+export const scheduleName = writable("Untitled Schedule");
+
+export const scheduleData = writable({'colorLabels': {}, 'times': {}});

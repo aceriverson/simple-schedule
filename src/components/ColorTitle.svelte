@@ -1,5 +1,5 @@
 <script>
-    import { colorTitles, selectedColor } from '../stores.js'
+    import { colorTitles, scheduleData, selectedColor } from '../stores.js'
 
     import { onDestroy, onMount } from 'svelte'
 
@@ -15,10 +15,11 @@
     function handleTitle() {
         document.querySelectorAll(`[data-color="${$selectedColor}"]`).forEach(element => element.style.color != "black" ? element.innerText = this.value : null);
         localColorTitles[$selectedColor] = this.value;
+        $scheduleData.colorLabels[$selectedColor] = this.value;
     }
 
 </script>
 
 <div>
-    <input bind:value={currentColorTitle} on:input={handleTitle}>
+    <input bind:value={currentColorTitle} on:input={handleTitle} placeholder="Label">
 </div>
