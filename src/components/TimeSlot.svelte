@@ -1,8 +1,19 @@
 <script>
     import { colorTitles, timeDelta, scheduleData, selectedColor } from "../stores"
 
+    import { onMount } from "svelte"
+
     export let time;
     export let day;
+
+    onMount(() => {
+        if ($scheduleData.times[`${day}-${time}`]) {
+            let colorCache = $selectedColor;
+            $selectedColor = $scheduleData.times[`${day}-${time}`];
+            handleClick();
+            $selectedColor = colorCache;
+        }
+    })
 
     function handleBorder() {
         let slotNode = document.getElementById(`${day}-${time}`);

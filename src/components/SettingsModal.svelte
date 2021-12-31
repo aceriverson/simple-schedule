@@ -1,5 +1,5 @@
 <script>
-    import { minTime, maxTime, timeDelta } from '../stores'
+    import { minTime, maxTime, timeDelta, scheduleData } from '../stores'
     import { createEventDispatcher } from 'svelte';
 
     const dispatch = createEventDispatcher();
@@ -34,19 +34,19 @@
         <div>
             <label for="begin">Start Time</label>
             <input type="range" id="begin" name="begin"
-                min="0" max="1439" bind:value={$minTime} on:change={() => {$minTime >= $maxTime ? $minTime = $maxTime - 1 : null; window.localStorage.setItem('minTime', $minTime)}}>
+                min="0" max="1439" bind:value={$scheduleData.settings.start} on:change={() => {$minTime >= $maxTime ? $minTime = $maxTime - 1 : null}}>
             <p>{hrminFormat($minTime)}</p>
         </div>
         <div>
             <label for="end">End Time</label>
             <input type="range" id="end" name="end"
-                min="1" max="1440" bind:value={$maxTime} on:change={() => {$maxTime <= $minTime ? $maxTime = $minTime + 1 : null; window.localStorage.setItem('maxTime', $maxTime)}}>
+                min="1" max="1440" bind:value={$scheduleData.settings.end} on:change={() => {$maxTime <= $minTime ? $maxTime = $minTime + 1 : null}}>
                 <p>{hrminFormat($maxTime)}</p>
         </div>
         <div>
             <label for="delta">Increment</label>
             <input type="range" id="delta" name="delta"
-                min="1" max="120" bind:value={$timeDelta} on:change={() => window.localStorage.setItem('delta', $timeDelta)}>
+                min="1" max="120" bind:value={$scheduleData.settings.delta}>
                 <p>{$timeDelta} minutes</p>
         </div>
         <div class="close">

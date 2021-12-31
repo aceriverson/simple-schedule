@@ -9,7 +9,7 @@
 
 	import { scheduleData, scheduleName } from './stores'
 
-	import { onDestroy } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 
 	let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
