@@ -1,4 +1,5 @@
 <script>
+	import ColorTitle from './components/ColorTitle.svelte'
 	import Day from './components/Day.svelte'
 	import Palette from './components/Palette.svelte'
 
@@ -17,12 +18,10 @@
 	</div>
 	<div class="footer-container">
 		<div>
-
-			<Settings />
+			<Palette />
 		</div>
 		<div>
-
-			<Palette />
+			<ColorTitle />
 		</div>
 	</div>
 </main>
@@ -47,14 +46,13 @@
 	}
 
 	.footer-container {
-		background-color: white;
-		border: 1px solid #ff3e00;
 		margin: .5em;
 		padding: .5em;
 		position: fixed;
 		bottom: 0;
 		display: flex;
 		flex-direction: row;
+		align-items: flex-end;
 	}
 
 	.footer-container > * {

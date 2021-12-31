@@ -31,24 +31,6 @@
 
         times = times;
     }
-
-    // let times = []
-    // for (let i = 0; i < 1440; i += 15) {
-    //     let hour = Math.trunc(i / 60)
-    //     let minutes = i % 60
-    //     let meridian = "am"
-
-    //     if (hour > 12) {
-    //         hour -= 12
-    //         meridian = "pm"
-    //     } else if (hour == 0) {
-    //         hour = 12;
-    //     }
-
-
-    //     times.push((hour + ":" + String(minutes).padStart(2, '0') + meridian));
-    // }
-
 </script>
 
 <div class="main">
