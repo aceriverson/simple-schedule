@@ -24,6 +24,7 @@
                     aboveNode.style.borderBottomRightRadius = "0px";
 
                     document.getElementById(`title-${day}-${time}`).innerText = "";
+                    document.getElementById(`title-${day}-${time}`).style.color = "black";
                 } else {
                     slotNode.style.borderTopLeftRadius = ".5em";
                     slotNode.style.borderTopRightRadius = ".5em";
@@ -40,6 +41,7 @@
             document.getElementById(`title-${day}-${time}`).style.color = $selectedColor;
         } else {
             document.getElementById(`title-${day}-${time}`).innerText = "";
+            document.getElementById(`title-${day}-${time}`).style.color = "black";
         }
 
         if (belowNode) {
@@ -59,6 +61,7 @@
                     belowNode.style.borderTopRightRadius = "0px";
 
                     document.getElementById(`title-${belowNode.id}`).innerText = "";
+                    document.getElementById(`title-${belowNode.id}`).style.color = "black";
                 } else {
                     slotNode.style.borderBottomLeftRadius = ".5em";
                     slotNode.style.borderBottomRightRadius = ".5em";
@@ -72,8 +75,15 @@
 
     function handleClick() {
         let slotNode = document.getElementById(`${day}-${time}`);
-        slotNode.style.backgroundColor != 'white' ? slotNode.style.backgroundColor = 'white' : slotNode.style.backgroundColor = $selectedColor;
-        document.getElementById(`title-${day}-${time}`).innerText = "";
+        if (slotNode.style.backgroundColor != 'white') {
+            slotNode.style.backgroundColor = 'white';
+            // document.querySelectorAll("[data-foo='1']")
+            document.getElementById(`title-${day}-${time}`).innerText = "";
+            document.getElementById(`title-${day}-${time}`).setAttribute("data-color", "");
+        } else {
+            slotNode.style.backgroundColor = $selectedColor;
+            document.getElementById(`title-${day}-${time}`).setAttribute("data-color", $selectedColor);
+        }
 
         handleBorder();
     }
@@ -97,7 +107,7 @@
 <div class="main" on:click={handleClick}>
     <div>
         {hrminFormat(time)}
-        <p id="title-{day}-{time}"></p>
+        <p id="title-{day}-{time}" data-color=""></p>
     </div>
     <div class="slot" id="{day}-{time}" style="background-color: white;">
 

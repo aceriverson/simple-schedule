@@ -13,6 +13,7 @@
     onDestroy(selectedColorSubscription);
 
     function handleTitle() {
+        document.querySelectorAll(`[data-color="${$selectedColor}"]`).forEach(element => element.style.color != "black" ? element.innerText = this.value : null);
         localColorTitles[$selectedColor] = this.value;
     }
 
