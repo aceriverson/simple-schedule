@@ -20,7 +20,8 @@
 
     function makeNewSchedule() {
         console.log('hi')
-        $scheduleName = 'New Schedule ' + getUniqueSchedule(0);
+        let uniqueInt = getUniqueSchedule(0)
+        $scheduleName = 'New Schedule ' + uniqueInt;
         $scheduleData = {
             'colorLabels': {
                 "deeppink": "", 
@@ -40,8 +41,8 @@
             },
             'times': {}
         };
-        console.log('here')
-        localScheduleName = $scheduleName;
+        localScheduleName = 'New Schedule ' + uniqueInt;
+        // document.getElementById('title-select').value = 'New Schedule ' + uniqueInt;
     }
 
     function getUniqueSchedule(i) {
