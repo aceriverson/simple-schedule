@@ -3,7 +3,7 @@ import { onMount } from 'svelte';
 
 export const selectedColor = writable("deeppink");
 
-export const scheduleName = writable("Untitled Schedule");
+export const scheduleName = writable(Object.keys(window.localStorage)[0] || "New Schedule");
 
 const colorTitlesTemplate = {
     "deeppink": "", 
@@ -26,10 +26,12 @@ export const scheduleData = writable({
     'times': JSON.parse(window.localStorage.getItem(get(scheduleName)))?.times || {}
 });
 
-export const minTime = derived(scheduleData, $scheduleData => $scheduleData.settings.start);
-export const maxTime = derived(scheduleData, $scheduleData => $scheduleData.settings.end);
-export const timeDelta = derived(scheduleData, $scheduleData => $scheduleData.settings.delta);
+export const scheduleList = writable(Object.keys(window.localStorage));
+
+export const minTime = derived(scheduleData, $scheduleData => $scheduleData?.settings?.start || 360);
+export const maxTime = derived(scheduleData, $scheduleData => $scheduleData?.settings?.end || 1340);
+export const timeDelta = derived(scheduleData, $scheduleData => $scheduleData?.settings?.delta || 15);
 
 export const colorTitles = derived(scheduleData, 
-    $scheduleData => $scheduleData.colorLabels
+    $scheduleData => $scheduleData?.colorLabels || colorTitlesTemplate
 );

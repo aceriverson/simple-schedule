@@ -1,7 +1,7 @@
 <script>
     import { colorTitles, scheduleData, selectedColor } from '../stores.js'
 
-    import { onDestroy, onMount } from 'svelte'
+    import { onDestroy } from 'svelte'
 
     let currentColorTitle;
 
@@ -11,6 +11,8 @@
 
     const selectedColorSubscription = selectedColor.subscribe(value => currentColorTitle = localColorTitles[value]);
     onDestroy(selectedColorSubscription);
+
+    $: currentColorTitle = localColorTitles[$selectedColor];
 
     function handleTitle() {
         document.querySelectorAll(`[data-color="${$selectedColor}"]`).forEach(element => element.style.color != "black" ? element.innerText = this.value : null);

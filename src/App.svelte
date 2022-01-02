@@ -7,7 +7,7 @@
 
 	import Settings from './icons/Settings.svelte'
 
-	import { scheduleData, scheduleName } from './stores'
+	import { scheduleData, scheduleName, scheduleList } from './stores'
 
 	import { onDestroy, onMount } from 'svelte';
 
@@ -20,6 +20,7 @@
 
 	function updateLocalStorage(data) {
 		window.localStorage.setItem($scheduleName, JSON.stringify(data))
+		$scheduleList = Object.keys(window.localStorage);
 	}
 </script>
 

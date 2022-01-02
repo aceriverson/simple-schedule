@@ -1,19 +1,63 @@
 <script>
-    import { colorTitles, timeDelta, scheduleData, selectedColor } from "../stores"
+    import { colorTitles, timeDelta, scheduleData, selectedColor, scheduleName } from "../stores"
 
-    import { onMount } from "svelte"
+    import { afterUpdate, onMount, onDestroy } from "svelte"
 
     export let time;
     export let day;
 
-    onMount(() => {
+    // console.log('hi');
+
+    let isMountComplete = false;
+    afterUpdate(() => {
+        // console.log('in mount ' + day + time)
+        // if ($scheduleData.times[`${day}-${time}`]) {
+        //     let colorCache = $selectedColor;
+        //     $selectedColor = $scheduleData.times[`${day}-${time}`];
+        //     handleClick();
+        //     $selectedColor = colorCache;
+        // }
+        handleFillColor();
+        // const scheduleNameSubscription = scheduleName.subscribe(handleFillColor);
+        // onDestroy(scheduleNameSubscription);
+        isMountComplete = true;
+    })
+
+    // beforeUpdate(() => {
+    //     if (!isMountComplete) {
+    //         return
+    //     } else {
+
+    //         console.log('update')
+    //     }
+
+    // })
+
+
+    function handleFillColor() {
+        let slotNode = document.getElementById(`${day}-${time}`);
+        slotNode.style.backgroundColor = 'white';
+        slotNode.style.borderRadius = 0;
+        document.getElementById(`title-${day}-${time}`).innerText = "";
+        document.getElementById(`title-${day}-${time}`).setAttribute("data-color", "");
+
         if ($scheduleData.times[`${day}-${time}`]) {
             let colorCache = $selectedColor;
             $selectedColor = $scheduleData.times[`${day}-${time}`];
             handleClick();
             $selectedColor = colorCache;
         }
-    })
+    }
+
+    // afterUpdate(() => {
+    //     console.log('in update')
+    //     if ($scheduleData.times[`${day}-${time}`]) {
+    //         let colorCache = $selectedColor;
+    //         $selectedColor = $scheduleData.times[`${day}-${time}`];
+    //         handleClick();
+    //         $selectedColor = colorCache;
+    //     }
+    // })
 
     function handleBorder() {
         let slotNode = document.getElementById(`${day}-${time}`);
